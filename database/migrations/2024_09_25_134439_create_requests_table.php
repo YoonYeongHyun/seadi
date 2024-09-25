@@ -9,7 +9,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('requests', function (Blueprint $table) {
-            $table->id(); // 요청 고유 식별자 (no)1
+            $table->id(); // 요청 고유 식별자 (no)
             $table->foreignId('no_user')->constrained('users')->onDelete('cascade'); // 요청자 사용자 ID (no_user)
             $table->string('title'); // 아이디어 제목
             $table->text('content'); // 아이디어 설명

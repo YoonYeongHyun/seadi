@@ -9,7 +9,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('level_progress', function (Blueprint $table) {
-            $table->id(); // 진행 관리번호 (no)4
+            $table->id(); // 진행 관리번호 (no)
             $table->foreignId('no_user')->constrained('users')->onDelete('cascade'); // 해당 레벨을 달성한 사용자
             $table->tinyInteger('level'); // 달성한 레벨
             $table->integer('user_cnt')->default(0); // 해당 레벨을 달성한 사용자 수
