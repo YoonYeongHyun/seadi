@@ -38,7 +38,7 @@
             <!-- Page Content -->
             <main>
                 @if (isset($slot))
-                <!--{{ $slot }}-->
+                    {{ $slot }}
                 @endif
             </main>
         </div>

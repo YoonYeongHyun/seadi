@@ -73,6 +73,7 @@
                 @endif
 
                 <!-- Settings Dropdown -->
+                @if (Auth::user() != null)
                 <div class="ms-3 relative">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
@@ -124,6 +125,7 @@
                         </x-slot>
                     </x-dropdown>
                 </div>
+                @endif
             </div>
 
             <!-- Hamburger -->
@@ -137,8 +139,8 @@
             </div>
         </div>
     </div>
-
     <!-- Responsive Navigation Menu -->
+    @if (Auth::user() != null)
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
@@ -147,6 +149,7 @@
         </div>
 
         <!-- Responsive Settings Options -->
+
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="flex items-center px-4">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -156,10 +159,14 @@
                 @endif
 
                 <div>
-                    @if (Auth::user()->currentTeam()->count() > 1)
-                        <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
-                        <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-                    @endif
+                    <div class="font-medium text-base text-gray-800 dark:text-gray-200">
+                        {{ Auth::user()->name }}
+                    </div>
+                    <div class="font-medium text-sm text-gray-500">
+                        @if (Auth::user() != null)
+                        {{ Auth::user()->email }}
+                        @endif
+                    </div>
                 </div>
             </div>
 
@@ -219,4 +226,5 @@
             </div>
         </div>
     </div>
+    @endif
 </nav>
