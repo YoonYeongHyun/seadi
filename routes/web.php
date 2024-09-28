@@ -12,7 +12,7 @@ Route::get('/about', function () { return view('about'); })->name('about');
 Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
 
 //컨트롤러 호출
-Route::get('/dashboard', [RequestsController::class, 'loadRequestView'])->name('dashboard');
+//Route::get('/dashboard', [RequestsController::class, 'loadRequestView'])->name('dashboard');
 
 
 
