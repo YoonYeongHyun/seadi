@@ -11,15 +11,13 @@ Route::get('/home', function () { return view('home'); }) -> name('home');
 Route::get('/about', function () { return view('about'); })->name('about');
 Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
 
+//컨트롤러 호출
+Route::get('/dashboard', [RequestsController::class, 'loadRequestView'])->name('dashboard');
 
 
 
 // AUTH View
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
     Route::get('/profile/show', function () { return view('profile/show'); })->name('profile.show');
 });
 
