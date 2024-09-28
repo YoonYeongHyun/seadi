@@ -18,4 +18,3 @@ yarn-error.log
 /.vscode
 /.lh
 /config/database.php
-/vendor/composer/installed.php
