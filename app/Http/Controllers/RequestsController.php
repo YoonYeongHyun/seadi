@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Requests;
+use App\Models\Idea;
 
 class RequestsController extends Controller
 {
     public function loadRequestView(){
-        return view('boards.idea_board');
+
+        $items = Idea::all();
+        return view('boards.idea_board', [
+            'items' => $items
+        ]);
+        
     }
 }
