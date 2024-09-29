@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id(); // 사용자 관리번호 (no)
             $table->string('name'); // 사용자명
             $table->string('nickname')->default('anonymous'); // 기본값 설정
-            $table->string('email')->unique(); // 이메일
+            $table->string('email')->unique(); // 이메일        
+            $table->string('google_id')->nullable();
             $table->string('password'); // 비밀번호
             $table->tinyInteger('level')->default(1); // 사용자 레벨 (1~99)
             $table->boolean('subscription_required')->default(false); // 유료 구독 여부

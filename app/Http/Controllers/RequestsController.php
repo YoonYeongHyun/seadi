@@ -8,7 +8,6 @@ use App\Models\Requests;
 class RequestsController extends Controller
 {
     public function loadRequestView(){
-        
-        return view('dashboard');
+        return view('boards.idea_board');
     }
 }

@@ -3,16 +3,18 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\RequestsController; 
+
+
 
 
 
 Route::get('/', function () { return view('layouts/app'); }) -> name('app');
 Route::get('/home', function () { return view('home'); }) -> name('home');
-Route::get('/about', function () { return view('about'); })->name('about');
 Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
 
 //컨트롤러 호출
-//Route::get('/dashboard', [RequestsController::class, 'loadRequestView'])->name('dashboard');
+Route::get('/about', [RequestsController::class, 'loadRequestView'])->name('about');
 
 
 
