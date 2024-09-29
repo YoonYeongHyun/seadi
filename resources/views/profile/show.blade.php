@@ -7,12 +7,14 @@
 
     <div>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+            <!-- Update Profile Information -->
             @if (Laravel\Fortify\Features::canUpdateProfileInformation())
                 @livewire('profile.update-profile-information-form')
 
                 <x-section-border />
             @endif
 
+            <!-- Password Update -->
             @if (!Auth::user()->google_id)
                 @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
                     <div class="mt-10 sm:mt-0">
@@ -23,6 +25,7 @@
                 @endif
             @endif
 
+            <!-- Two Factor Authentication -->
             @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.two-factor-authentication-form')
@@ -30,15 +33,9 @@
 
                 <x-section-border />
             @endif
-            @if(false)
-                <div class="mt-10 sm:mt-0">
-                    @livewire('profile.logout-other-browser-sessions-form')
-                </div>
-                <x-section-border />
-            @endif
 
+            <!-- Account Deletion -->
             @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
-
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.delete-user-form')
                 </div>

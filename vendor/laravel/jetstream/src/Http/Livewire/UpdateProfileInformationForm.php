@@ -50,12 +50,13 @@ class UpdateProfileInformationForm extends Component
      * Update the user's profile information.
      *
      * @param  \Laravel\Fortify\Contracts\UpdatesUserProfileInformation  $updater
-     * @return \Illuminate\Http\RedirectResponse|null
+     * @return void
      */
     public function updateProfileInformation(UpdatesUserProfileInformation $updater)
     {
         $this->resetErrorBag();
 
+        // 프로필 정보 업데이트
         $updater->update(
             Auth::user(),
             $this->photo
@@ -63,12 +64,19 @@ class UpdateProfileInformationForm extends Component
                 : $this->state
         );
 
+        // 새 사진이 업로드된 경우 처리
         if (isset($this->photo)) {
-            return redirect()->route('profile.show');
+            $path = $this->photo->store('profile-photos', 'public');  // 사진을 저장하고 경로 반환
+            Auth::user()->update([
+                'profile_photo_path' => $path,  // 데이터베이스에 저장된 경로 업데이트
+            ]);
+            $this->photo = null;  // 업로드 후 사진 초기화
         }
 
+        // 저장 완료 이벤트 발생
         $this->dispatch('saved');
 
+        // 네비게이션 메뉴 업데이트
         $this->dispatch('refresh-navigation-menu');
     }
 
@@ -81,6 +89,7 @@ class UpdateProfileInformationForm extends Component
     {
         Auth::user()->deleteProfilePhoto();
 
+        // Refresh the navigation menu
         $this->dispatch('refresh-navigation-menu');
     }
 

@@ -25,6 +25,7 @@ trait HasProfilePhoto
             ])->save();
 
             if ($previous) {
+                // 이전 프로필 사진을 삭제
                 Storage::disk($this->profilePhotoDisk())->delete($previous);
             }
         });
@@ -45,8 +46,10 @@ trait HasProfilePhoto
             return;
         }
 
+        // 프로필 사진 파일을 삭제
         Storage::disk($this->profilePhotoDisk())->delete($this->profile_photo_path);
 
+        // 프로필 사진 경로를 null로 설정
         $this->forceFill([
             'profile_photo_path' => null,
         ])->save();
@@ -60,9 +63,18 @@ trait HasProfilePhoto
     public function profilePhotoUrl(): Attribute
     {
         return Attribute::get(function (): string {
-            return $this->profile_photo_path
-                    ? Storage::disk($this->profilePhotoDisk())->url($this->profile_photo_path)
+            // 프로필 사진 경로가 있으면 URL 반환
+            if ($this->profile_photo_path) {
+                $photoPath = $this->profile_photo_path;
+
+                // 사진이 제대로 저장된 경우 URL을 반환, 그렇지 않으면 기본 사진 URL 반환
+                return Storage::disk($this->profilePhotoDisk())->exists($photoPath)
+                    ? Storage::disk($this->profilePhotoDisk())->url($photoPath)
                     : $this->defaultProfilePhotoUrl();
+            }
+
+            // 프로필 사진이 없으면 기본 사진 URL을 반환
+            return $this->defaultProfilePhotoUrl();
         });
     }
 
