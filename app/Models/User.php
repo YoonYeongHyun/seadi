@@ -27,8 +27,8 @@ class User extends Authenticatable
         'email',
         'password',
         'nickname',
-        'dt_reg', // 가입일
-        'dt_upt', // 수정일
+        'created_at', // 가입일
+        'updated_at', // 수정일
     ];
 
     /**
@@ -72,12 +72,12 @@ class User extends Authenticatable
     protected static function booted()
     {
         static::creating(function ($user) {
-            $user->dt_reg = now(); // 생성 시점에 가입일 설정
-            $user->dt_upt = now(); // 생성 시점에 수정일 설정
+            $user->created_at = now(); // 생성 시점에 가입일 설정
+            $user->updated_at = now(); // 생성 시점에 수정일 설정
         });
 
         static::updating(function ($user) {
-            $user->dt_upt = now(); // 수정 시점에 수정일 업데이트
+            $user->created_at = now(); // 수정 시점에 수정일 업데이트
         });
     }
 

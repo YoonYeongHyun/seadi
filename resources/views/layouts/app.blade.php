@@ -23,6 +23,7 @@
     <body class="font-sans antialiased">
         <x-banner />
 
+
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @livewire('navigation-menu')
 
@@ -46,5 +47,35 @@
         @stack('modals')
 
         @livewireScripts
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // 로컬 저장소에 다크모드 상태를 저장하고 불러오기 위한 함수
+                const themeToggleBtn = document.getElementById('theme-toggle');
+                const themeToggleIcon = document.getElementById('theme-toggle-icon');
+
+                // 사용자가 이전에 설정한 테마를 로컬 저장소에서 불러오기
+                if (localStorage.getItem('theme') === 'dark') {
+                    document.documentElement.classList.add('dark');
+                    themeToggleIcon.textContent = '☀️'; // 라이트 모드 아이콘
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    themeToggleIcon.textContent = '🌙'; // 다크 모드 아이콘
+                }
+
+                themeToggleBtn.addEventListener('click', () => {
+                    // 다크모드가 활성화되어 있으면 제거하고, 그렇지 않으면 추가
+                    if (document.documentElement.classList.contains('dark')) {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('theme', 'light'); // 라이트 모드 저장
+                        themeToggleIcon.textContent = '🌙'; // 다크 모드 아이콘
+                    } else {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('theme', 'dark'); // 다크 모드 저장
+                        themeToggleIcon.textContent = '☀️'; // 라이트 모드 아이콘
+                    }
+                });
+            });
+        </script>
+
     </body>
 </html>

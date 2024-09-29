@@ -24,14 +24,14 @@ return new class extends Migration
             $table->integer('total_request')->default(0); // 총 요청 수
             $table->timestamp('email_verified_at')->nullable(); // 이메일 인증
             $table->rememberToken();
-            $table->timestamp('dt_reg')->useCurrent(); // 가입일 (자동으로 현재 시간을 저장)
-            $table->timestamp('dt_upt')->nullable()->useCurrentOnUpdate(); // 수정일 (업데이트 시 자동 갱신)
+            $table->timestamp('created_at')->useCurrent(); // 가입일 (자동으로 현재 시간을 저장)
+            $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate(); // 수정일 (업데이트 시 자동 갱신)
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');
-            $table->timestamp('dt_reg')->nullable();
+            $table->timestamp('created_at')->nullable();
         });
 
         Schema::create('sessions', function (Blueprint $table) {

@@ -34,11 +34,9 @@ class DeleteUserForm extends Component
     public function confirmUserDeletion()
     {
         $this->resetErrorBag();
-
         $this->password = '';
 
         $this->dispatch('confirming-delete-user');
-
         $this->confirmingUserDeletion = true;
     }
 
@@ -54,14 +52,21 @@ class DeleteUserForm extends Component
     {
         $this->resetErrorBag();
 
-        if (! Hash::check($this->password, Auth::user()->password)) {
-            throw ValidationException::withMessages([
-                'password' => [__('This password does not match our records.')],
-            ]);
+        // 구글 로그인 사용자 여부 확인
+        if (Auth::user()->google_id) {
+            // 구글 로그인 사용자라면 비밀번호 확인 생략
+            $deleter->delete(Auth::user()->fresh());
+        } else {
+            // 비밀번호 확인이 필요한 사용자
+            if (! Hash::check($this->password, Auth::user()->password)) {
+                throw ValidationException::withMessages([
+                    'password' => [__('This password does not match our records.')],
+                ]);
+            }
+            $deleter->delete(Auth::user()->fresh());
         }
 
-        $deleter->delete(Auth::user()->fresh());
-
+        // 로그아웃 처리
         $auth->logout();
 
         if ($request->hasSession()) {

@@ -11,6 +11,9 @@ export default {
         './resources/views/**/*.blade.php',
     ],
 
+    // 다크 모드를 클래스 기반으로 설정
+    darkMode: 'class',
+
     theme: {
         extend: {
             fontFamily: {
@@ -19,7 +22,7 @@ export default {
             
             space: {
                 '20px': '20px',
-            }
+            },
         },
     },
 

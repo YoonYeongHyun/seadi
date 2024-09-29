@@ -25,18 +25,27 @@
             </x-slot>
 
             <x-slot name="content">
-                {{ __('Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
+                {{ __('Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted.') }}
+                
+                <!-- 구글 로그인 사용자인지 확인 -->
+                @if (Auth::user()->google_id)
+                    <!-- 구글 로그인 사용자는 비밀번호 확인 건너뜀 -->
+                    <div class="text-sm text-red-600 dark:text-red-400 mt-4">
+                        {{ __('Since you logged in with Google, no password confirmation is required.') }}
+                    </div>
+                @else
+                    <!-- 일반 사용자에게만 비밀번호 확인 -->
+                    <div class="mt-4" x-data="{}" x-on:confirming-delete-user.window="setTimeout(() => $refs.password.focus(), 250)">
+                        <x-input type="password" class="mt-1 block w-3/4"
+                                    autocomplete="current-password"
+                                    placeholder="{{ __('Password') }}"
+                                    x-ref="password"
+                                    wire:model="password"
+                                    wire:keydown.enter="deleteUser" />
 
-                <div class="mt-4" x-data="{}" x-on:confirming-delete-user.window="setTimeout(() => $refs.password.focus(), 250)">
-                    <x-input type="password" class="mt-1 block w-3/4"
-                                autocomplete="current-password"
-                                placeholder="{{ __('Password') }}"
-                                x-ref="password"
-                                wire:model="password"
-                                wire:keydown.enter="deleteUser" />
-
-                    <x-input-error for="password" class="mt-2" />
-                </div>
+                        <x-input-error for="password" class="mt-2" />
+                    </div>
+                @endif
             </x-slot>
 
             <x-slot name="footer">
