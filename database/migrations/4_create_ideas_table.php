@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('ideas_category'); // 카테고리
             $table->string('writer_name'); // 작성자 이름
             $table->string('writer_email'); // 작성자 이메일
+            $table->string('thumbnail_path'); // 작성자 이메일
             $table->integer('like_cnt')->default(0); // '좋아요'수
             $table->integer('view_cnt')->default(0); // 조회수
             $table->timestamp('dt_reg')->useCurrent(); // 작성일
