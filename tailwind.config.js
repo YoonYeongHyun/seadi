@@ -15,14 +15,17 @@ export default {
     darkMode: 'class',
 
     theme: {
+        content: [
+            "./src/**/*.{js,ts,jsx,tsx}",
+          ],
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
-            
-            space: {
-                '20px': '20px',
-            },
+            backgroundImage:{
+                bookmark_gray : 'url("./image/Book_Mark_Black.svg")',
+                bookmark_black : 'url("./image/Book_Mark_Gray.svg")',
+            }
         },
     },
 

@@ -1,37 +1,52 @@
 <x-app-layout>
     <x-slot name="header" >
         <div class="">
-            <div class="container">
-                <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight h-48">
-                    ㅎㅇ
-                </h2>
+            <div class="container h-32">
+                <h2 class="max-w-full text-center text-3xl font-extrabold">
+                    원하시는 아이디어를 검색하세요!
+                </h2>    
+                <div class="flex w-8/12 min-w-96 h-12 mx-auto mt-6 px-2 py-0.5 rounded-lg border border-gray-300">
+                    <img class="w-7 h-7 mt-1 float-left" src="\image\Search_Black.svg" alt="">
+                    <div class="flex-grow">
+                        <input class="w-full border-none focus:outline-none focus:ring-0" type="text">
+                    </div>
+                </div>
             </div>
-                
         </div>
         </x-slot>
 
-    <div class="py-12">
-        <div class=" container mx-auto max-w-7xl px-12 pt-12 pb-24">
+    <div class="container mx-auto max-w-7xl px-12 pb-24">
+        <div class="">
+            <h2 class="max-w-full pl-4 py-6 text-left text-2xl font-extrabold">
+                최신 아이디어
+            </h2>    
             @if(count($items) > 0)
             <div class=" flex flex-row flex-wrap overflow-hidden sm:rounded">
                 @foreach($items as $item)
                     <div class="inline-block basis-1/3">
-                        <div class=" box-border mx-12 mt-2 mb-14 p-4 shadow-sm rounded-3xl hover:ring-1 ring-gray-300 focus:cursor-auto cursor-pointer">
-                            @if (!empty($item->thumbnail_path))
-                                <img class="w-full h-44 rounded-2xl" src="{{ asset('Seadi_Img/Idea_Thumbnail') }}/{{$item->thumbnail_path}}" alt="">
-                            @else
-                                <img class="w-full h-44 rounded-2xl" src="\image\tempImg.png" alt="">
-                            @endif
-                            <div class=" flex flex-row py-4 min-h-20 max-h-44">
-                                <div class="inline-block basis-1/6">
+                        <div class=" box-border mx-4 mt-2 mb-14 p-4 rounded-3xl ring-1 ring-gray-200 hover:shadow-lg  focus:cursor-auto cursor-pointer">
+                            <div class="relative max-w-xs rounded-2xl overflow-hidden bg-cover bg-no-repeat">
+                                @if (!empty($item->thumbnail_path))
+                                    <img class="w-full h-44 rounded-2xl max-w-xs transition duration-300 ease-in-out hover:scale-110" 
+                                         src="{{ asset('Seadi_Img/Idea_Thumbnail') }}/{{$item->thumbnail_path}}" alt="">
+                                @else
+                                    <img class="w-full h-44 rounded-2xl" src="\image\tempImg.png" alt="">
+                                @endif
+                            </div>
+                            <div class=" flex flex-row py-4 h-24">
+                                <div class="inline-block basis-2/12 ">
                                     <img class="mx-auto mt-1.5 w-8 h-8 rounded-full ring-offset-2 ring-2 ring-blue-400 hover:ring-blue-700" 
                                          src="{{ asset('Seadi_Img/Idea_Thumbnail') }}/{{$item->thumbnail_path}}" alt="">
                                 </div>
-                                <div class="inline-block basis-5/6 pl-2">
+                                <div class="inline-block basis-9/12 px-2">
                                     <p class="text-sm text-gray-500">{{ $item->writer_name }} </p>
                                     <p class="text-sm dark:text-gray-200" >{{ $item->title }} </p>
                                 </div>
-                                
+                                <div class="inline-block basis-1/12">
+                                    <img class="w-6 h-6 bg-cover" src="\image\Book_Mark_Gray.svg" alt="">
+                                    <div class="w-6 h-6 bg-cover bg-[url('./assets/image/Book_Mark_Gray.svg')]" >
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
