@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\IdeasController;
+use App\Http\Controllers\RequestsController;
 use Illuminate\Support\Str; // Str 클래스를 추가
 
 
@@ -21,10 +21,7 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 // 컨트롤러 호출
-Route::get('/about', [IdeasController::class, 'loadIdeasView'])->name('about');
-Route::get('/ideaWriter', [IdeasController::class, 'loadWriteIdeaView'])->name('ideaWriter');
-
-
+Route::get('/about', [RequestsController::class, 'loadRequestView'])->name('about');
 
 // AUTH View
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
@@ -40,20 +37,27 @@ Route::get('/auth/google', function () {
 
 // Google 로그인 콜백
 Route::get('/auth/google/callback', function () {
-    $googleUser = Socialite::driver('google')->stateless()->user(); // stateless를 추가하여 상태 검증을 피함
+    $googleUser = Socialite::driver('google')->stateless()->user(); // 구글 사용자 정보 가져오기
 
     // 기존 사용자인지 확인
     $user = \App\Models\User::where('email', $googleUser->getEmail())->first();
 
-    // 없으면 새로운 사용자 생성
+    // 사용자가 없으면 새로운 사용자 생성
     if (!$user) {
         $user = \App\Models\User::create([
             'name' => $googleUser->getName(),
             'email' => $googleUser->getEmail(),
             'google_id' => $googleUser->getId(),
-            'password' => bcrypt(Str::random(16)), // 비밀번호는 랜덤 생성하지만 실제 사용하지 않음
+            'password' => bcrypt(Str::random(16)), // 비밀번호는 랜덤 생성
+            'status' => 'Y', // 새로운 사용자는 기본적으로 'Y' 상태로 설정
         ]);
     } else {
+        // 기존 사용자의 상태가 'Y'인지 확인
+        if ($user->status !== 'Y') {
+            // 상태가 'Y'가 아니면 로그인 실패 처리
+            return redirect()->route('login')->withErrors(['email' => 'Your account is inactive.']);
+        }
+
         // 구글 아이디가 기존 사용자와 다를 경우 업데이트
         if (!$user->google_id) {
             $user->google_id = $googleUser->getId();
@@ -66,3 +70,5 @@ Route::get('/auth/google/callback', function () {
 
     return redirect('/dashboard'); // 로그인 후 리다이렉트할 페이지
 });
+
+
