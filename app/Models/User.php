@@ -27,6 +27,7 @@ class User extends Authenticatable
         'email',
         'password',
         'nickname',
+        'status', // 상태값 추가 (가입 시 'Y', 삭제 시 'N')
         'created_at', // 가입일
         'updated_at', // 수정일
     ];
@@ -64,20 +65,29 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $dates = ['dt_reg', 'dt_upt']; // 가입일 및 수정일
+    protected $dates = ['created_at', 'updated_at']; // 가입일 및 수정일
 
     /**
-     * Boot method to handle dt_reg and dt_upt fields automatically.
+     * Default attributes for the model.
+     *
+     * @var array<string, mixed>
+     */
+    protected $attributes = [
+        'status' => 'Y', // 가입 시 상태값 기본 설정
+    ];
+
+    /**
+     * Boot method to handle created_at and updated_at fields automatically.
      */
     protected static function booted()
     {
         static::creating(function ($user) {
             $user->created_at = now(); // 생성 시점에 가입일 설정
-            $user->updated_at = now(); // 생성 시점에 수정일 설정
+            $user->updated_at = now(); // 생성 시점에도 수정일 설정
         });
 
         static::updating(function ($user) {
-            $user->created_at = now(); // 수정 시점에 수정일 업데이트
+            $user->updated_at = now(); // 수정 시점에 수정일 업데이트
         });
     }
 

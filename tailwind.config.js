@@ -17,14 +17,14 @@ export default {
     theme: {
         content: [
             "./src/**/*.{js,ts,jsx,tsx}",
-          ],
+        ],
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
-            backgroundImage:{
-                bookmark_gray : 'url("./image/Book_Mark_Black.svg")',
-                bookmark_black : 'url("./image/Book_Mark_Gray.svg")',
+            backgroundImage: {
+                bookmark_gray: 'url("./image/Book_Mark_Black.svg")',
+                bookmark_black: 'url("./image/Book_Mark_Gray.svg")',
             }
         },
     },
