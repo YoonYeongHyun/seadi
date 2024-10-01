@@ -33,7 +33,9 @@
         });
     });
 </script>
-
+<script src="{{ asset('js/summernote') }}/summernote-lite.js"></script>
+<script src="{{ asset('js/summernote') }}/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="{{ asset('css/summernote') }}/summernote-lite.css">
 <?php
 function Console_log($data){
     echo "<script>console.log( 'PHP_Console: " . $data . "' );</script>";

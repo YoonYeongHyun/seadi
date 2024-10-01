@@ -16,12 +16,9 @@
 
         <!-- Scripts -->
         <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script src="{{ asset('js/summernote') }}/summernote-lite.js"></script>
-        <script src="{{ asset('js/summernote') }}/lang/summernote-ko-KR.js"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/summernote') }}/summernote-lite.css">
         @livewireStyles
     </head>
     <body class="font-sans antialiased">

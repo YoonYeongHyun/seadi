@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\RequestsController;
+use App\Http\Controllers\IdeasController;
 use Illuminate\Support\Str; // Str 클래스를 추가
 
 
@@ -21,7 +21,10 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 // 컨트롤러 호출
-Route::get('/about', [RequestsController::class, 'loadRequestView'])->name('about');
+Route::get('/about', [IdeasController::class, 'loadIdeasView'])->name('about');
+Route::get('/ideaWriter', [IdeasController::class, 'loadWriteIdeaView'])->name('ideaWriter');
+
+
 
 // AUTH View
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
@@ -70,5 +73,3 @@ Route::get('/auth/google/callback', function () {
 
     return redirect('/dashboard'); // 로그인 후 리다이렉트할 페이지
 });
-
-
