@@ -17,7 +17,6 @@ class IdeasController extends Controller
         return view('boards.idea_board', [
             'ideas' => $ideas
         ]);
-        
     }
 
     public function loadWriteIdeaView(){
@@ -27,7 +26,5 @@ class IdeasController extends Controller
         return view('boards.idea_write', [
             'users' => $users
         ]);
-        
     }
-    
 }
