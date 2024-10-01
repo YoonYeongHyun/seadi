@@ -18,10 +18,12 @@
                     <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
                         {{ __('About') }}
                     </x-nav-link>
-
                     @auth
                         <x-nav-link href="{{ route('dashboard') }}">
                             {{ __('Dashboard') }}
+                        </x-nav-link>
+                        <x-nav-link href="{{ route('ideaWriter') }}">
+                            {{ __('IdeaWriter') }}
                         </x-nav-link>
                     @else
                         <x-nav-link href="{{ route('login') }}">

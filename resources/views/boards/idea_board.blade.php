@@ -20,15 +20,15 @@
             <h2 class="max-w-full pl-4 py-6 text-left text-2xl font-extrabold">
                 최신 아이디어
             </h2>    
-            @if(count($items) > 0)
+            @if(count($ideas) > 0)
             <div class=" flex flex-row flex-wrap overflow-hidden sm:rounded">
-                @foreach($items as $item)
+                @foreach($ideas as $idea)
                     <div class="inline-block basis-1/3">
                         <div class=" box-border mx-4 mt-2 mb-14 p-4 rounded-3xl ring-1 ring-gray-200 hover:shadow-lg  focus:cursor-auto cursor-pointer">
                             <div class="relative max-w-xs rounded-2xl overflow-hidden bg-cover bg-no-repeat">
-                                @if (!empty($item->thumbnail_path))
+                                @if (!empty($idea->thumbnail_path))
                                     <img class="w-full h-44 rounded-2xl max-w-xs transition duration-300 ease-in-out hover:scale-110" 
-                                         src="{{ asset('Seadi_Img/Idea_Thumbnail') }}/{{$item->thumbnail_path}}" alt="">
+                                         src="{{ asset('Seadi_Img/Idea_Thumbnail') }}/{{$idea->thumbnail_path}}" alt="">
                                 @else
                                     <img class="w-full h-44 rounded-2xl" src="\image\tempImg.png" alt="">
                                 @endif
@@ -36,15 +36,14 @@
                             <div class=" flex flex-row py-4 h-24">
                                 <div class="inline-block basis-2/12 ">
                                     <img class="mx-auto mt-1.5 w-8 h-8 rounded-full ring-offset-2 ring-2 ring-blue-400 hover:ring-blue-700" 
-                                         src="{{ asset('Seadi_Img/Idea_Thumbnail') }}/{{$item->thumbnail_path}}" alt="">
+                                         src="{{ asset('storage') }}/{{$idea->profile_photo_path}}" alt="">
                                 </div>
                                 <div class="inline-block basis-9/12 px-2">
-                                    <p class="text-sm text-gray-500">{{ $item->writer_name }} </p>
-                                    <p class="text-sm dark:text-gray-200" >{{ $item->title }} </p>
+                                    <p class="text-sm text-gray-500">{{ $idea->nickname }} </p>
+                                    <p class="text-sm dark:text-gray-200" >{{ $idea->title }} </p>
                                 </div>
                                 <div class="inline-block basis-1/12">
-                                    <img class="w-6 h-6 bg-cover" src="\image\Book_Mark_Gray.svg" alt="">
-                                    <div class="w-6 h-6 bg-cover bg-[url('./assets/image/Book_Mark_Gray.svg')]" >
+                                    <div class="w-6 h-6 bg-cover common_bookmark">
                                     </div>
                                 </div>
                             </div>
@@ -63,6 +62,6 @@
 function Console_log($data){
     echo "<script>console.log( 'PHP_Console: " . $data . "' );</script>";
 }
-Console_log($items);
+Console_log($ideas);
 ?>
 

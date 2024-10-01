@@ -5,3 +5,11 @@
 [x-cloak] {
     display: none;
 }
+
+.common_bookmark{
+    background-image: url('../../public/image/Book_Mark_Gray.svg');
+}
+
+.common_bookmark:hover{
+     background-image: url('../../public//image/Book_Mark_Black.svg');
+}

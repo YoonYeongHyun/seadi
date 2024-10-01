@@ -9,21 +9,23 @@
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
+        <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="{{ asset('js/summernote') }}/summernote-lite.js"></script>
+        <script src="{{ asset('js/summernote') }}/lang/summernote-ko-KR.js"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Styles -->
+        <link rel="stylesheet" href="{{ asset('css/summernote') }}/summernote-lite.css">
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
         <x-banner />
-
-
         <div class="min-h-screen dark:bg-gray-900">
             @livewire('navigation-menu')
 
