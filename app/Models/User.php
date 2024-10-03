@@ -27,9 +27,10 @@ class User extends Authenticatable
         'email',
         'password',
         'nickname',
-        'status', // 상태값 추가 (가입 시 'Y', 삭제 시 'N')
-        'created_at', // 가입일
-        'updated_at', // 수정일
+        'status',       // 상태값 추가 (가입 시 'Y', 삭제 시 'N')
+        'created_at',   // 가입일
+        'updated_at',   // 수정일
+        'bio',          // 내소개
     ];
 
     /**

@@ -81,6 +81,14 @@
                 @endif
             @endif
         </div>
+        <!-- Bio -->
+        <div class="col-span-6 sm:col-span-4">
+            <label for="bio" class="block text-sm font-medium text-gray-700">{{ __('Bio') }}</label>
+            <textarea id="bio" name="bio" rows="3" class="mt-1 block w-full rounded-md shadow-sm border-gray-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" wire:model.defer="state.bio"></textarea>
+            @error('bio') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+        </div>
+
+
     </x-slot>
 
     <x-slot name="actions">
