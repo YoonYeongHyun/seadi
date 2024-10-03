@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Models\Idea;
 use App\Models\User;
 
@@ -14,8 +15,9 @@ class IdeasController extends Controller
         ->leftJoin('users', 'ideas.writer_id', '=', 'users.id')
         ->get();
 
+        //return view('boards.idea_board', [
         return view('boards.idea_board', [
-            'ideas' => $ideas
+                'ideas' => $ideas
         ]);
     }
 
@@ -25,6 +27,14 @@ class IdeasController extends Controller
 
         return view('boards.idea_write', [
             'users' => $users
+        ]);
+    }
+
+    public function storeIdea(Request $request): JsonResponse
+    {
+        dd($request->all());
+        return view('boards.idea_board', [
+            'ideas' => $request
         ]);
     }
 }

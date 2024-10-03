@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\IdeasController;
 use Illuminate\Support\Str; // Str 클래스를 추가
+
+use App\Http\Controllers\IdeasController;
 
 
 // 기본 라우트 설정
@@ -23,7 +24,7 @@ Route::get('/dashboard', function () {
 // 컨트롤러 호출
 Route::get('/about', [IdeasController::class, 'loadIdeasView'])->name('about');
 Route::get('/ideaWriter', [IdeasController::class, 'loadWriteIdeaView'])->name('ideaWriter');
-
+Route::post('/storeIdea', [IdeasController::class, 'storeIdea'])->name('storeIdea');
 
 
 // AUTH View

@@ -11,13 +11,11 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
         <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+        
         <!-- Styles -->
         @livewireStyles
     </head>
@@ -25,7 +23,7 @@
         <x-banner />
         <div class="min-h-screen dark:bg-gray-900">
             @livewire('navigation-menu')
-
+            
             <!-- Page Heading -->
             @if (isset($header))
                 <header class=" dark:bg-gray-800 shadow">
@@ -45,7 +43,7 @@
 
         @stack('modals')
 
-        @livewireScripts
+        @livewireScripts        
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 // 로컬 저장소에 다크모드 상태를 저장하고 불러오기 위한 함수
@@ -75,6 +73,5 @@
                 });
             });
         </script>
-
     </body>
 </html>
