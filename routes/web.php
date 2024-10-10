@@ -5,7 +5,8 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str; // Str 클래스를 추가
 
-use App\Http\Controllers\IdeasController;
+use App\Http\Controllers\Board\IdeasController;
+use App\Livewire\IdeaEditer;
 
 
 // 기본 라우트 설정
@@ -25,6 +26,7 @@ Route::get('/dashboard', function () {
 Route::get('/about', [IdeasController::class, 'loadIdeasView'])->name('about');
 Route::get('/ideaWriter', [IdeasController::class, 'loadWriteIdeaView'])->name('ideaWriter');
 Route::post('/storeIdea', [IdeasController::class, 'storeIdea'])->name('storeIdea');
+Route::post('/uploadImage', [IdeaEditer::class, 'uploadImage'])->name('uploadImage');
 
 
 // AUTH View

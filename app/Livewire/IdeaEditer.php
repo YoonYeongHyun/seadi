@@ -29,19 +29,21 @@ class IdeaEditer extends Component
 
     public function render()
     {
-        return view('livewire.idea-editer');
+        //return view('livewire.idea_editer_quills');
+        return view('livewire.idea_editer_summer');
     }
 
     public function uploadImage($image)
     {
         $imageData = substr($image, strpos($image, ',') + 1);
 
-        $length = strlen($imageData);
-        $lastSixCharacters = substr($imageData, $length - 20);
+        $time_now = date("ymdHis");
+        
+        $lastSixCharacters = substr($imageData, 0, 10);
 
         $imageData = base64_decode($imageData);
 
-        $filename = $lastSixCharacters . '.png';
+        $filename = $time_now . $lastSixCharacters . '.png';
 
         $manager = new ImageManager(new Driver());
         
@@ -67,13 +69,7 @@ class IdeaEditer extends Component
 
     public function deleteImage($image)
     {
-       $imageData = substr($image, strpos($image, ',') + 1);
-
-        $length = strlen($imageData);
-
-        $lastSixCharacters = substr($imageData, $length - 20);
-
-        $filename = $lastSixCharacters . '.png';
+        $filename = substr($image, strpos($image, 'ideas_photos') + 13);
 
         if (file_exists(public_path("storage/ideas_photos/" . $filename))) {
             unlink(public_path("storage/ideas_photos/" . $filename));

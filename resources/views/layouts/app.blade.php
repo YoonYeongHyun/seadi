@@ -14,6 +14,7 @@
 
         <!-- Scripts -->
         <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+        
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         
         <!-- Styles -->

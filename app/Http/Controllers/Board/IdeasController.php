@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Board;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Models\Idea;
 use App\Models\User;
+use App\Http\Controllers\Controller;
 
 class IdeasController extends Controller
 {

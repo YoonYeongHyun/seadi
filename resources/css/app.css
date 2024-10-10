@@ -13,3 +13,9 @@
 .common_bookmark:hover{
      background-image: url('../../public//image/Book_Mark_Black.svg');
 }
+
+#editor img{
+    float: none !important;
+    vertical-align: bottom;
+    display: inline;
+}
