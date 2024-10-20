@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id(); // 사용자 관리번호 (no)
             $table->string('name'); // 사용자명
             $table->string('nickname')->default('anonymous'); // 기본값 설정
-            $table->string('email')->unique(); // 이메일        
+            $table->string('email')->unique(); // 이메일    
+            $table->string('profile_photo_path', 2048)->nullable(); // 경로를 저장하는 컬럼    
             $table->string('google_id')->nullable();
             $table->string('password'); // 비밀번호
             $table->tinyInteger('level')->default(1); // 사용자 레벨 (1~99)
@@ -24,8 +25,11 @@ return new class extends Migration
             $table->integer('total_request')->default(0); // 총 요청 수
             $table->timestamp('email_verified_at')->nullable(); // 이메일 인증
             $table->rememberToken();
+            $table->string('status')->default('Y');
+            $table->text('bio')->nullable(); // bio 필드 추가, nullable로 설정
             $table->timestamp('created_at')->useCurrent(); // 가입일 (자동으로 현재 시간을 저장)
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate(); // 수정일 (업데이트 시 자동 갱신)
+
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

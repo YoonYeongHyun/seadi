@@ -15,7 +15,7 @@
         </div>
         </x-slot>
 
-    <div class="container mx-auto max-w-7xl px-12 pb-24">
+    <div class="container mx-auto max-w-6xl">
         <div class="">
             <h2 class="max-w-full pl-4 py-6 text-left text-2xl font-extrabold">
                 최신 아이디어

@@ -13,7 +13,7 @@ class IdeasController extends Controller
     public function loadIdeasView(){
 
         $ideas = DB::table('ideas')
-        ->leftJoin('users', 'ideas.writer_id', '=', 'users.id')
+        ->leftJoin('users', 'ideas.created_id', '=', 'users.id')
         ->get();
 
         //return view('boards.idea_board', [

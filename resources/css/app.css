@@ -14,8 +14,24 @@
      background-image: url('../../public//image/Book_Mark_Black.svg');
 }
 
-#editor img{
-    float: none !important;
-    vertical-align: bottom;
-    display: inline;
+/* 콘텐츠 편집기 백그라운드 색상 고정*/
+.note-editable{ 
+    background-color: white;
 }
+
+/* 콘텐츠 편집기 외곽선 제거*/
+.note-frame{
+    border:none !important;
+}
+
+/*기본 폰트 설정*/
+body { 
+    font-family: "Inter", sans-serif;
+}
+
+/* input-text 박스 길이는 외부 div에 Full로 고정*/
+textarea, input[type=text] { 
+    min-width: -webkit-fill-available !important;
+    resize: none;
+    border : none;
+} 
