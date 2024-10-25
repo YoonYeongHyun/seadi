@@ -63,13 +63,13 @@
                         </div>
                         <div class="flex flex-col gap-2">
                             <div style="min-width: 24px;">
-                                <svg class="kds-icon kds-fill-icon-green" style="width: 24px; aspect-ratio: 1 / 1;">
+                                <svg class="" style="width: 24px; aspect-ratio: 1 / 1;">
                                     <use xlink:href="#icon--lightbulb.kds"></use>
                                 </svg>
                             </div>
-                            <div class="kds-mt-01">
+                            <div class="">
                                 <span class="">Give backers the best first impression of your project with great titles. 
-                                    <button id="projectTitleTipCTA" type="button" aria-expanded="false" class="kds-p-0" data-rac="" style="font-weight: inherit; font-size: inherit; color: inherit;">
+                                    <button id="" type="button" aria-expanded="false" class="kds-p-0" data-rac="" style="font-weight: inherit; font-size: inherit; color: inherit;">
                                         <span class="text-underline">Learn more...</span>
                                     </button>
                                 </span>
@@ -77,7 +77,34 @@
                         </div>
                     </div>
                 </article>
-
+                <article class="py-10 border-b border-black/15 dark:border-white/15">
+                    <h2 class="text-2xl font-semibold text-neutral-900 dark:text-neutral-300">Project image</h2>
+                    <div class="">
+                        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+                            <span>Add an image that clearly represents your project. Choose one that looks good at different sizes—it’ll appear on your project page, across the Kickstarter website and mobile apps, and (when shared) on social channels.</span>
+                        </p>
+                        <br>
+                        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+                            <span>Your image should be at least 1024x576 pixels. It will be cropped to a 16:9 ratio.</span>
+                        </p>
+                    </div>
+                    <div class="grid gap-y-6 mt-5 p-12 border rounded-lg border-black/15 dark:border-white/15  text-neutral-900 dark:text-neutral-400">
+                        <div class="border rounded-lg border-dashed border-black/15 dark:border-white/15  text-neutral-900 dark:text-neutral-400">
+                            <div class="">
+                                <label class="cursor-pointer">
+                                    <input class="hidden" type="file" tabindex="0" accept="image/jpeg, image/jpg, image/png">
+                                    <div class="p-6 grid ">
+                                        <button  type="button" class="border border-black/15 dark:border-white/15 max-w-64 mr-auto" >Upload an image</button>
+                                        <div>
+                                            <p class="">Drop an image here, or select a file.</p>
+                                            <p class="">It must be a JPG, PNG, GIF, or WEBP, no larger than 50 MB.</p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </article>
                 <article class="py-10 border-b border-black/15 dark:border-white/15">
                     <h2 class="text-2xl font-semibold text-neutral-900 dark:text-neutral-300">Introduce your project</h2>
                     <div class="">
