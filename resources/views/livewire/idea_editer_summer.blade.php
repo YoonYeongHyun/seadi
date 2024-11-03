@@ -1,6 +1,6 @@
 <!-- 라이브 와이어의 새로고침 방지를 위해 꼭 사용 - wire:ignore  -->
 <div wire:model="content" wire:ignore> 
-    <textarea id="description" name="editordata"></textarea>
+    <textarea id="description" name="idea-contents"></textarea>
 
     <!-- include summernote css/js -->
 </div>

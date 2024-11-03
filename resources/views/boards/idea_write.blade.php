@@ -15,8 +15,8 @@
         <div class="">
             <form method="POST" wire:ignore action="{{ route('storeIdea') }}" enctype="multipart/form-data">
                 <article class="py-10 border-b border-black/15 dark:border-white/15">
-                    <h2 class="text-2xl font-semibold text-neutral-900 dark:text-neutral-300">Project title</h2>
-                    <div class="">
+                    <div>
+                        <h2 class="text-2xl font-semibold text-neutral-900 dark:text-neutral-300">Project title</h2>
                         <p class="text-sm text-neutral-500 dark:text-neutral-400">
                             <span>Write a clear, brief title and subtitle to help people quickly understand your project. Both will appear on your project and pre-launch pages.</span>
                         </p>
@@ -78,8 +78,8 @@
                     </div>
                 </article>
                 <article class="py-10 border-b border-black/15 dark:border-white/15">
-                    <h2 class="text-2xl font-semibold text-neutral-900 dark:text-neutral-300">Project image</h2>
-                    <div class="">
+                    <div>
+                        <h2 class="text-2xl font-semibold text-neutral-900 dark:text-neutral-300">Project image</h2>
                         <p class="text-sm text-neutral-500 dark:text-neutral-400">
                             <span>Add an image that clearly represents your project. Choose one that looks good at different sizes—it’ll appear on your project page, across the Kickstarter website and mobile apps, and (when shared) on social channels.</span>
                         </p>
@@ -89,28 +89,35 @@
                         </p>
                     </div>
                     <div class="grid gap-y-6 mt-5 p-12 border rounded-lg border-black/15 dark:border-white/15  text-neutral-900 dark:text-neutral-400">
-                        <div class="border rounded-lg border-dashed border-black/15 dark:border-white/15  text-neutral-900 dark:text-neutral-400">
-                            <div class="">
+                        <div class="border rounded-lg border-dashed border-black/15 dark:border-white/15  text-neutral-900 dark:text-neutral-400 overflow-hidden">
+                            <div id="uploadBox">
                                 <label class="cursor-pointer">
-                                    <input class="hidden" type="file" tabindex="0" accept="image/jpeg, image/jpg, image/png">
-                                    <div class="p-6 grid ">
-                                        <button  type="button" class="border border-black/15 dark:border-white/15 max-w-64 mr-auto" >Upload an image</button>
-                                        <div>
-                                            <p class="">Drop an image here, or select a file.</p>
-                                            <p class="">It must be a JPG, PNG, GIF, or WEBP, no larger than 50 MB.</p>
+                                    <input class="hidden" id="imageInput" name="idea-image" type="file" tabindex="0" accept="image/jpeg, image/jpg, image/png">
+                                    <div class="p-6 grid">
+                                        <button  type="button" class="border border-black/15 dark:border-white/15 p-3 rounded-md font-bold gap-5 justify-self-center pointer-events-none" >Upload an image</button>
+                                        <div class="gap-5">
+                                            <p class="text-center mt-4">Drop an image here, or select a file.</p>
+                                            <p class="text-center mt-2">It must be a JPG, PNG, GIF, or WEBP, no larger than 50 MB.</p>
                                         </div>
                                     </div>
                                 </label>
                             </div>
+                            <div id="previewBox">
+                                <img id="previewImg" src="" alt="">
+                            </div>
+                        </div>
+                        <div id="hiddenUploadButton">
+                            <button id="imgUploadBtn" type="button">업로드</button>
+                            <button id="imgDeleteBtn" type="button">삭제</button>
                         </div>
                     </div>
                 </article>
                 <article class="py-10 border-b border-black/15 dark:border-white/15">
-                    <h2 class="text-2xl font-semibold text-neutral-900 dark:text-neutral-300">Introduce your project</h2>
-                    <div class="">
+                    <div>
+                        <h2 class="text-2xl font-semibold text-neutral-900 dark:text-neutral-300">Introduce your project</h2>
                         <p class="text-sm text-neutral-500 dark:text-neutral-400">
                             <span>Tell people why they should be excited about your project. Get specific but be clear and be brief.</span>
-                        </p>
+                        </p>    
                     </div>
                     <div class="mt-5 border border-black/15 dark:border-white/15 rounded-lg overflow-auto">
                             @csrf
@@ -130,7 +137,55 @@
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.5/dist/quill.js"></script>
 <script wire:ignore src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.5/dist/quill.js"></script>
 -->
+<script>
+    $(document).ready(function() {
 
+        const uploadBox = $("#uploadBox");
+        const imageInput = $("#imageInput");
+        const previewBox = $("#previewBox");
+        const previewImg = $("#previewImg");
+        const imgUploadBtn = $("#imgUploadBtn");
+        const imgDeleteBtn = $("#imgDeleteBtn");
+
+        //이미지 업로드 이벤트
+        imageInput.change(function(event){
+
+            var file = event.target.files[0];
+            var reader = new FileReader(); 
+
+            reader.onload = function(e) {
+                previewImg.attr("src", e.target.result);
+                previewBox.css('display', 'block');
+                uploadBox.css('display', 'none');
+            }
+
+            reader.readAsDataURL(file);
+
+		});
+
+        //이미지 업로드 버튼 클릭 이벤트
+        $("#imgUploadBtn").click(function(){
+
+            imageInput.click();
+
+        });
+        
+        //이미지 삭제 버튼 클릭 이벤트
+        $("#imgDeleteBtn").click(function(){
+            
+            var agent = navigator.userAgent.toLowerCase();
+
+            if((navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1) ) {
+                imageInput.replaceWith(imageInput.clone(true));
+            } else{
+                imageInput.val("");
+            }
+
+            previewBox.css('display', 'none');
+            uploadBox.css('display', 'block');
+        });
+    });
+</script>
 
 <?php
 function Console_log($data){
